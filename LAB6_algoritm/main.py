@@ -25,7 +25,6 @@ def ordinal_statistics(numbers):
     except IndexError:
         print("пустий масив")
 
-numbers = [31,414,124,-13,41241,22122,-1]
 lowest, highest, median = ordinal_statistics(numbers)
 print("найменше число:", lowest)
 print("найбільше число:", highest)
