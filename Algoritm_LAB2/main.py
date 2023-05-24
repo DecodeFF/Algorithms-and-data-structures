@@ -1,41 +1,4 @@
-# def parent(i):
-#     return (i - 1) // 2
-#
-# def left(i):
-#     return 2 * i + 1
-#
-# def right(i):
-#     return 2 * i + 2
-#
-# def max_heapify(arr, n, i):
-#     largest = i
-#     l = left(i)
-#     r = right(i)
-#
-#     if l < n and arr[l] > arr[largest]:
-#         largest = l
-#     if r < n and arr[r] > arr[largest]:
-#         largest = r
-#     if largest != i:
-#         arr[i], arr[largest] = arr[largest], arr[i]
-#         max_heapify(arr, n, largest)
-#
-# def build_max_heap(arr):
-#     n = len(arr)
-#     for i in range(n//2, -1, -1):
-#         max_heapify(arr, n, i)
-#
-# def heap_sort(arr):
-#     n = len(arr)
-#     build_max_heap(arr)
-#     for i in range(n-1, 0, -1):
-#         arr[0], arr[i] = arr[i], arr[0]
-#         max_heapify(arr, i, 0)
-#     return arr
-#
-# arr = [5, 3, 8, 4, 2]
-# sorted_arr = heap_sort(arr)
-# print(sorted_arr)
+
 
 
 def max_heapify(A, n, i):
