@@ -1,0 +1,34 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+vector<int> discreteConvolution(const vector<int>& x_k, const vector<int>& y_k) {
+  int xLength = x_k.size();
+  int yLength = y_k.size();
+  int resultLength = xLength + yLength - 1;
+  vector<int> result(resultLength, 0);
+
+  for (int i = 0; i < xLength; ++i) {
+    for (int j = 0; j < yLength; ++j) {
+      result[i + j] += x_k[i] * y_k[j];
+    }
+  }
+
+  return result;
+}
+
+int main() {
+  vector<int> x_k = {5, 2, 3};
+  vector<int> y_k = {9, 7, 5};
+
+  vector<int> result = discreteConvolution(x_k, y_k);
+
+  cout << "Результат дискретної згортки: ";
+  for (int value : result) {
+    cout << value << " ";
+  }
+  cout << endl;
+
+  return 0;
+}
