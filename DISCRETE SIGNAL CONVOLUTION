@@ -3,30 +3,28 @@
 
 using namespace std;
 
-vector<int> discreteConvolution(const vector<int>& x_k, const vector<int>& y_k) {
-  int xLength = x_k.size();
-  int yLength = y_k.size();
-  int resultLength = xLength + yLength - 1;
-  vector<int> result(resultLength, 0);
+int main() {
+  // Вхідні сигнали
+  vector<int> x_k = {1, 2, 3};
+  vector<int> y_k = {5, 3, 1};
 
-  for (int i = 0; i < xLength; ++i) {
-    for (int j = 0; j < yLength; ++j) {
-      result[i + j] += x_k[i] * y_k[j];
+  // Результат згортки
+  vector<int> f;
+
+  // Розрахунок згортки
+  for (int n = 0; n < x_k.size() + y_k.size() - 1; n++) {
+    int sum = 0;
+    for (int k = 0; k < x_k.size(); k++) {
+      if (n - k >= 0) {
+        sum += x_k[k] * y_k[n - k];
+      }
     }
+    f.push_back(sum);
   }
 
-  return result;
-}
-
-int main() {
-  vector<int> x_k = {5, 2, 3};
-  vector<int> y_k = {9, 7, 5};
-
-  vector<int> result = discreteConvolution(x_k, y_k);
-
-  cout << "Результат дискретної згортки: ";
-  for (int value : result) {
-    cout << value << " ";
+  // Виведення результату
+  for (int i = 0; i < f.size(); i++) {
+    cout << f[i] << " ";
   }
   cout << endl;
 
