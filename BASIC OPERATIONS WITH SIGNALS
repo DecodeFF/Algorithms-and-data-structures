@@ -1,0 +1,129 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+// Функція для виводу сигналу на екран
+void printSignal(const vector<int>& signal) {
+    for (int i = 0; i < signal.size(); i++) {
+        cout << signal[i] << " ";
+    }
+    cout << endl;
+}
+
+// Операція масштабування
+vector<int> scaleSignal(const vector<int>& signal, int scaleFactor) {
+    vector<int> scaledSignal(signal.size());
+    for (int i = 0; i < signal.size(); i++) {
+        scaledSignal[i] = signal[i] * scaleFactor;
+    }
+    return scaledSignal;
+}
+
+// Операція реверсу по часу
+vector<int> reverseSignal(const vector<int>& signal) {
+    vector<int> reversedSignal(signal.size());
+    for (int i = 0; i < signal.size(); i++) {
+        reversedSignal[i] = signal[signal.size() - 1 - i];
+    }
+    return reversedSignal;
+}
+
+// Операція зсуву по часу
+vector<int> shiftSignal(const vector<int>& signal, int shiftAmount) {
+    vector<int> shiftedSignal(signal.size());
+    for (int i = 0; i < signal.size(); i++) {
+        int newIndex = i + shiftAmount;
+        if (newIndex >= 0 && newIndex < signal.size()) {
+            shiftedSignal[newIndex] = signal[i];
+        }
+    }
+    return shiftedSignal;
+}
+
+// Операція розширення
+vector<int> expandSignal(const vector<int>& signal, int expansionFactor) {
+    vector<int> expandedSignal(signal.size() * expansionFactor);
+    for (int i = 0; i < signal.size(); i++) {
+        for (int j = 0; j < expansionFactor; j++) {
+            expandedSignal[i * expansionFactor + j] = signal[i];
+        }
+    }
+    return expandedSignal;
+}
+
+// Операція додавання сигналів
+vector<int> addSignals(const vector<int>& signal1, const vector<int>& signal2) {
+    int maxLength = max(signal1.size(), signal2.size());
+    vector<int> result(maxLength);
+    for (int i = 0; i < maxLength; i++) {
+        int value1 = (i < signal1.size()) ? signal1[i] : 0;
+        int value2 = (i < signal2.size()) ? signal2[i] : 0;
+        result[i] = value1 + value2;
+    }
+    return result;
+}
+
+// Операція множення сигналів
+vector<int> multiplySignals(const vector<int>& signal1, const vector<int>& signal2) {
+    int maxLength = max(signal1.size(), signal2.size());
+    vector<int> result(maxLength);
+    for (int i = 0; i < maxLength; i++) {
+        int value1 = (i < signal1.size()) ? signal1[i] : 0;
+        int value2 = (i < signal2.size()) ? signal2[i] : 0;
+        result[i] = value1 * value2;
+    }
+    return result;
+}
+
+int main() {
+    // Створення дискретних сигналів
+    vector<int> x_k = {1, 2, 3};
+    vector<int> y_k = {1, 3, 5};
+
+    // Масштабування
+    vector<int> scaled_x = scaleSignal(x_k, 2);
+    vector<int> scaled_y = scaleSignal(y_k, 3);
+
+    // Реверс по часу
+    vector<int> reversed_x = reverseSignal(x_k);
+    vector<int> reversed_y = reverseSignal(y_k);
+
+    // Зсув по часу
+    vector<int> shifted_x = shiftSignal(x_k, -1);
+    vector<int> shifted_y = shiftSignal(y_k, 2);
+
+    // Розширення
+    vector<int> expanded_x = expandSignal(x_k, 2);
+    vector<int> expanded_y = expandSignal(y_k, 3);
+
+    // Додавання сигналів
+    vector<int> added_signal = addSignals(x_k, y_k);
+
+    // Множення сигналів
+    vector<int> multiplied_signal = multiplySignals(x_k, y_k);
+
+    // Виведення результатів
+    cout << "Original x_k: ";
+    printSignal(x_k);
+
+    cout << "Scaled x_k (scaleFactor=2): ";
+    printSignal(scaled_x);
+
+    cout << "Reversed x_k: ";
+    printSignal(reversed_x);
+
+    cout << "Shifted x_k (shiftAmount=-1): ";
+    printSignal(shifted_x);
+
+    cout << "Expanded x_k (expansionFactor=2): ";
+    printSignal(expanded_x);
+
+    cout << "Added signals (x_k + y_k): ";
+    printSignal(added_signal);
+
+    cout << "Multiplied signals (x_k * y_k): ";
+    printSignal(multiplied_signal);
+
+    return 0;
+}
