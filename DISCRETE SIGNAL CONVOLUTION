@@ -8,14 +8,20 @@ int main() {
   vector<int> x_k = {1, 2, 3};
   vector<int> y_k = {1, 3, 5};
 
+  // Вирішуємо, що нам потрібно перевернути вектора
+  vector<int> reversed_y_k(y_k.size());
+  for (int i = 0; i < y_k.size(); i++) {
+    reversed_y_k[i] = y_k[y_k.size() - 1 - i];
+  }
+
   // Результат згортки
-  vector<int> f = vector<int>(x_k.size() + y_k.size() - 1);
+  vector<int> f = vector<int>(x_k.size() + reversed_y_k.size() - 1);
 
   // Розрахунок згортки
   for (int n = 0; n < f.size(); n++) {
     for (int k = 0; k < x_k.size(); k++) {
       if (n - k >= 0) {
-        f[n] += x_k[k] * y_k[n - k];
+        f[n] += x_k[k] * reversed_y_k[n - k];
       }
     }
   }
